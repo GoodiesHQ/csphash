@@ -17,7 +17,11 @@ build-windows-amd64:
 
 build:
 	@echo Building with GOOS=$(GOOS) GOARCH=$(GOARCH)
+ifeq ($(GOOS),windows)
+	go build -o bin/$(GOOS)_$(GOARCH)/csphash.exe ./cmd
+else
 	go build -o bin/$(GOOS)_$(GOARCH)/csphash ./cmd
+endif
 
 clean:
 	@echo Cleaning build artifacts...
